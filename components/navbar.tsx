@@ -72,7 +72,7 @@ export function Navbar() {
         }}
       >
         <Image
-          src="/assets/logo.png"
+          src="/assets/logowhite.png"
           alt="TourIstmo"
           width={44}
           height={44}
