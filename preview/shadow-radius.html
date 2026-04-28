@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F8F9FA;padding:20px}
+.label{font-size:10px;font-weight:600;color:#8A9BA8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+.row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.box{background:#fff;padding:16px 20px;text-align:center}
+.name{font-size:10px;font-weight:600;color:#283951;margin-bottom:2px}
+.val{font-size:9px;color:#8A9BA8;font-family:monospace}
+.radius-row{display:flex;gap:12px;flex-wrap:wrap}
+.rbox{background:#fff;border:1px solid #E1E8ED;display:flex;flex-direction:column;align-items:center;justify-content:center;width:80px;height:64px;gap:4px}
+</style></head><body>
+<div class="label">Shadow Tokens</div>
+<div class="row">
+  <div class="box" style="box-shadow:0 1px 3px rgba(40,57,81,.08);border-radius:10px"><div class="name">shadow-sm</div><div class="val">0 1px 3px .08</div></div>
+  <div class="box" style="box-shadow:0 4px 12px rgba(40,57,81,.12);border-radius:10px"><div class="name">shadow-md</div><div class="val">0 4px 12px .12</div></div>
+  <div class="box" style="box-shadow:0 8px 25px rgba(40,57,81,.15);border-radius:10px"><div class="name">shadow-lg</div><div class="val">0 8px 25px .15</div></div>
+  <div class="box" style="box-shadow:0 15px 35px rgba(40,57,81,.20);border-radius:10px"><div class="name">shadow-xl</div><div class="val">0 15px 35px .20</div></div>
+</div>
+<div class="label">Border Radius Tokens</div>
+<div class="radius-row">
+  <div class="rbox" style="border-radius:8px"><div class="name" style="font-size:10px;font-weight:600;color:#283951">8px</div><div class="val" style="font-size:9px;color:#8A9BA8">default</div></div>
+  <div class="rbox" style="border-radius:12px"><div class="name" style="font-size:10px;font-weight:600;color:#283951">12px</div><div class="val" style="font-size:9px;color:#8A9BA8">-lg</div></div>
+  <div class="rbox" style="border-radius:16px"><div class="name" style="font-size:10px;font-weight:600;color:#283951">16px</div><div class="val" style="font-size:9px;color:#8A9BA8">-xl</div></div>
+  <div class="rbox" style="border-radius:50px;width:96px"><div class="name" style="font-size:10px;font-weight:600;color:#283951">50px</div><div class="val" style="font-size:9px;color:#8A9BA8">-full / pill</div></div>
+</div>
+</body></html>

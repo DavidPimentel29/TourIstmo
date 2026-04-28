@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F8F9FA;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.swatch{border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(40,57,81,.1)}
+.color{height:64px}
+.info{background:#fff;padding:8px 12px}
+.name{font-size:11px;font-weight:600;color:#283951}
+.hex{font-size:10px;color:#5A6B7D;font-family:monospace}
+.section-label{font-size:10px;font-weight:600;color:#8A9BA8;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+</style></head><body>
+<div class="section-label">Text Colors</div>
+<div class="grid">
+  <div class="swatch"><div class="color" style="background:#283951"></div><div class="info"><div class="name">text-primary</div><div class="hex">#283951</div></div></div>
+  <div class="swatch"><div class="color" style="background:#5A6B7D"></div><div class="info"><div class="name">text-secondary</div><div class="hex">#5A6B7D</div></div></div>
+  <div class="swatch"><div class="color" style="background:#8A9BA8"></div><div class="info"><div class="name">text-muted</div><div class="hex">#8A9BA8</div></div></div>
+  <div class="swatch"><div class="color" style="background:#3f6b69"></div><div class="info"><div class="name">teal-text (AA)</div><div class="hex">#3f6b69</div></div></div>
+</div>
+<div class="section-label">Background Colors</div>
+<div class="grid">
+  <div class="swatch"><div class="color" style="background:#FFFFFF;border:1px solid #E1E8ED"></div><div class="info"><div class="name">bg-primary</div><div class="hex">#FFFFFF</div></div></div>
+  <div class="swatch"><div class="color" style="background:#F8F9FA"></div><div class="info"><div class="name">bg-secondary</div><div class="hex">#F8F9FA</div></div></div>
+  <div class="swatch"><div class="color" style="background:#E2E1E0"></div><div class="info"><div class="name">bg-light</div><div class="hex">#E2E1E0</div></div></div>
+  <div class="swatch"><div class="color" style="background:#E1E8ED"></div><div class="info"><div class="name">border-color</div><div class="hex">#E1E8ED</div></div></div>
+</div>
+<div class="section-label">State Colors</div>
+<div class="grid">
+  <div class="swatch"><div class="color" style="background:#4CAF50"></div><div class="info"><div class="name">success</div><div class="hex">#4CAF50</div></div></div>
+  <div class="swatch"><div class="color" style="background:#FFA726"></div><div class="info"><div class="name">warning</div><div class="hex">#FFA726</div></div></div>
+  <div class="swatch"><div class="color" style="background:#E74C3C"></div><div class="info"><div class="name">error</div><div class="hex">#E74C3C</div></div></div>
+  <div class="swatch"><div class="color" style="background:#588684"></div><div class="info"><div class="name">info</div><div class="hex">#588684</div></div></div>
+</div>
+</body></html>

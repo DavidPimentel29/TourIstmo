@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F8F9FA;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.swatch{border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(40,57,81,.12)}
+.color{height:80px}
+.info{background:#fff;padding:10px 12px}
+.name{font-size:11px;font-weight:600;color:#283951;margin-bottom:2px}
+.hex{font-size:10px;color:#5A6B7D;font-family:monospace}
+.desc{font-size:9px;color:#8A9BA8;margin-top:2px}
+</style></head><body>
+<div class="grid">
+  <div class="swatch"><div class="color" style="background:#283951"></div><div class="info"><div class="name">Navy</div><div class="hex">#283951</div><div class="desc">primary-dark · text · overlays</div></div></div>
+  <div class="swatch"><div class="color" style="background:#588684"></div><div class="info"><div class="name">Teal</div><div class="hex">#588684</div><div class="desc">primary-teal · navbar · footer</div></div></div>
+  <div class="swatch"><div class="color" style="background:#8BAD65"></div><div class="info"><div class="name">Green</div><div class="hex">#8BAD65</div><div class="desc">primary-green · nature accent</div></div></div>
+  <div class="swatch"><div class="color" style="background:#D57133"></div><div class="info"><div class="name">Orange</div><div class="hex">#D57133</div><div class="desc">accent-orange · CTAs · active</div></div></div>
+  <div class="swatch"><div class="color" style="background:#E2E1E0"></div><div class="info"><div class="name">Neutral</div><div class="hex">#E2E1E0</div><div class="desc">neutral-light · page bg</div></div></div>
+</div>
+<div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+  <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#283951,#588684)"></div><div class="info"><div class="name">Gradient Primary</div><div class="hex">navy → teal</div></div></div>
+  <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#588684,#8BAD65)"></div><div class="info"><div class="name">Gradient Nature</div><div class="hex">teal → green</div></div></div>
+  <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#D57133,#E8955A)"></div><div class="info"><div class="name">Gradient Warm</div><div class="hex">orange → light orange</div></div></div>
+</div>
+</body></html>

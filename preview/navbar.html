@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#E2E1E0;padding:20px;display:flex;flex-direction:column;gap:16px;align-items:center}
+.nav{display:flex;align-items:center;justify-content:space-between;background:#588684;padding:0 24px;border-radius:50px;height:60px;width:100%;max-width:720px;box-shadow:0 15px 35px rgba(40,57,81,.2);position:relative}
+.nav-left{display:flex;gap:4px}
+.nav-link{color:#E2E1E0;font-size:13px;font-weight:700;padding:6px 12px;border-radius:10px;text-decoration:none;transition:.2s}
+.nav-link.active{color:#fff;background:rgba(255,255,255,.18)}
+.nav-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;text-decoration:none}
+.logo-img{width:42px;height:42px}
+.logo-text{font-family:'Poppins';font-weight:700;font-size:18px;color:#fff}
+.nav-right{display:flex;align-items:center;gap:10px}
+.cta{background:#D57133;color:#fff;padding:6px 16px;border-radius:50px;font-size:12px;font-weight:600;text-decoration:none}
+.search-wrap{display:flex;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 12px;gap:6px}
+.search-wrap input{background:transparent;border:none;outline:none;color:#fff;font-size:12px;width:120px}
+.search-wrap input::placeholder{color:rgba(255,255,255,.6)}
+.note{font-size:11px;color:#5A6B7D;text-align:center;background:#fff;border-radius:8px;padding:8px 16px}
+</style></head><body>
+<nav class="nav">
+  <div class="nav-left">
+    <a class="nav-link active" href="#">Destinos</a>
+    <a class="nav-link" href="#">Planes</a>
+    <a class="nav-link" href="#">Nosotros</a>
+  </div>
+  <a class="nav-center" href="#">
+    <img class="logo-img" src="../assets/logo.svg" alt="TourIstmo">
+    <span class="logo-text">TourIstmo</span>
+  </a>
+  <div class="nav-right">
+    <div class="search-wrap">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input placeholder="Buscar destinos...">
+    </div>
+    <a class="cta" href="#">Ingresar</a>
+  </div>
+</nav>
+<div class="note">Floating pill navbar · teal bg · centered logo · orange CTA · transparent search</div>
+</body></html>

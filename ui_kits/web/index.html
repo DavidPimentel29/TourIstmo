@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TourIstmo — UI Kit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #283951; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #E2E1E0; }
+    ::-webkit-scrollbar-thumb { background: #588684; border-radius: 3px; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; }
+    input, select, textarea { font-family: inherit; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .fade-in { animation: fadeIn .35s ease forwards; }
+  </style>
+</head>
+<body>
+
+<script type="text/babel" src="Navbar.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+<script type="text/babel" src="DestinationCard.jsx"></script>
+<script type="text/babel" src="LoginForm.jsx"></script>
+<script type="text/babel" src="Dashboard.jsx"></script>
+<script type="text/babel" src="HeroSection.jsx"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const DESTINATIONS = [
+  { id:1, nombre:'Casco Viejo', provincia:'Panamá', tipo:'Histórico', precio:25, rating:4.9, imagen:'../../assets/casco-viejo.webp', desc:'El casco antiguo de la Ciudad de Panamá, declarado Patrimonio de la Humanidad por la UNESCO. Calles adoquinadas, arquitectura colonial y una vibrante vida nocturna.' },
+  { id:2, nombre:'Playa La Miel', provincia:'Bocas del Toro', tipo:'Playa', precio:null, rating:4.8, imagen:'../../assets/playa-la-miel.webp', desc:'Una de las playas más vírgenes de Panamá, accesible solo por bote. Aguas cristalinas turquesas y selva tropical que llega hasta el mar.' },
+  { id:3, nombre:'El Valle de Antón', provincia:'Coclé', tipo:'Natural', precio:30, rating:4.5, imagen:'../../assets/el-valle.webp', desc:'Un pueblo pintoresco ubicado dentro de un cráter volcánico extinto. Famoso por sus fuentes termales, cascadas y mercado artesanal de fin de semana.' },
+  { id:4, nombre:'India Dormida', provincia:'Coclé', tipo:'Aventura', precio:20, rating:4.6, imagen:'../../assets/india-dormida.webp', desc:'Cerro icónico que semeja el perfil de una mujer indígena dormida. Ofrece senderismo con vistas panorámicas del Valle de Antón.' },
+  { id:5, nombre:'Cinta Costera', provincia:'Panamá', tipo:'Cultural', precio:null, rating:4.4, imagen:'../../assets/cinta-costera.webp', desc:'Paseo marítimo de la Ciudad de Panamá con vistas al skyline moderno y al canal histórico. Ideal para ciclismo, running y atardeceres.' },
+  { id:6, nombre:'Biomuseo', provincia:'Panamá', tipo:'Cultural', precio:22, rating:4.7, imagen:'../../assets/biomuseo.webp', desc:'Diseñado por Frank Gehry, el único museo de su tipo en el mundo que narra cómo el surgimiento del Istmo de Panamá cambió la biodiversidad del planeta.' },
+];
+
+const PLANS = [
+  { id:1, nombre:'Tour Bocas del Toro', provincia:'Bocas del Toro', tipo:'Aventura', precio:85, rating:4.7, imagen:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=200&fit=crop', desc:'3 días explorando el archipiélago. Snorkel, delfines, playas de arena blanca y vida nocturna única.' },
+  { id:2, nombre:'Expedición Darién', provincia:'Darién', tipo:'Exploración', precio:null, rating:4.8, imagen:'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop', desc:'Aventura de 5 días en el Parque Nacional Darién, uno de los ecosistemas más biodiversos del mundo.' },
+  { id:3, nombre:'City Tour Panamá', provincia:'Panamá', tipo:'Cultural', precio:65, rating:4.6, imagen:'../../assets/casco-viejo.webp', desc:'Día completo recorriendo el Casco Viejo, el Canal de Panamá y el Biomuseo con guía certificado.' },
+  { id:4, nombre:'Snorkel San Blas', provincia:'Guna Yala', tipo:'Acuático', precio:120, rating:4.9, imagen:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=200&fit=crop', desc:'2 días en las paradisíacas islas Kuna. Snorkel en arrecifes de coral, hamacas sobre el mar y cultura indígena.' },
+  { id:5, nombre:'Senderismo Chiriquí', provincia:'Chiriquí', tipo:'Aventura', precio:55, rating:4.4, imagen:'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=200&fit=crop', desc:'Ascenso al Volcán Barú (3,474 m), el punto más alto de Panamá. Vista de dos océanos desde la cima.' },
+  { id:6, nombre:'Relax en Coclé', provincia:'Coclé', tipo:'Relajación', precio:75, rating:4.3, imagen:'../../assets/el-valle.webp', desc:'Fin de semana de bienestar: termas en El Valle, spa, senderismo suave y gastronomía local.' },
+];
+
+// ─── SCREENS ─────────────────────────────────────────────────────────────────
+
+// HomeScreen
+const HomeScreen = ({ onNavigate }) => {
+  const [heroIdx, setHeroIdx] = React.useState(0);
+  const heroes = [
+    { title:'Explora las maravillas de Panamá', sub:'Un lugar donde la naturaleza y la aventura se unen', img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&h=700&fit=crop' },
+    { title:'Descubre paraísos tropicales', sub:'Donde el mar Caribe te espera', img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&h=700&fit=crop' },
+    { title:'Aventúrate en la selva', sub:'Experimenta la biodiversidad única', img:'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&h=700&fit=crop' },
+  ];
+  const h = heroes[heroIdx];
+
+  React.useEffect(() => {
+    const t = setInterval(() => setHeroIdx(i => (i+1)%heroes.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="fade-in">
+      {/* Hero */}
+      <section style={{ ...homeStyles.hero, backgroundImage:`linear-gradient(135deg,rgba(40,57,81,.45),rgba(88,134,132,.3)), url('${h.img}')` }}>
+        <div style={homeStyles.heroContent}>
+          <h1 style={homeStyles.heroTitle}>{h.title}</h1>
+          <p style={homeStyles.heroSub}>{h.sub}</p>
+          <a href="#" onClick={e => { e.preventDefault(); onNavigate('destinations'); }} style={homeStyles.heroCta}>Explorar Destinos</a>
+        </div>
+        <div style={homeStyles.heroControls}>
+          <button style={homeStyles.heroCtrl} onClick={() => setHeroIdx(i => i === 0 ? heroes.length-1 : i-1)}>‹</button>
+          <button style={{ ...homeStyles.heroCtrl, background:'rgba(255,255,255,.9)', color:'#283951' }} onClick={() => setHeroIdx(i => (i+1)%heroes.length)}>›</button>
+        </div>
+      </section>
+
+      {/* Destinations carousel */}
+      <section style={homeStyles.section}>
+        <h2 style={homeStyles.sectionTitle}>Top 6 destinos mejor valorados</h2>
+        <div style={homeStyles.carousel}>
+          {DESTINATIONS.map(d => <DestinationCard key={d.id} item={d} onClick={() => onNavigate('destination-detail', d)} />)}
+        </div>
+        <div style={{ textAlign:'center', marginTop:24 }}>
+          <a href="#" onClick={e => { e.preventDefault(); onNavigate('destinations'); }} style={homeStyles.btnPrimary}>Ver todos los destinos</a>
+        </div>
+      </section>
+
+      {/* Plans carousel */}
+      <section style={homeStyles.section}>
+        <h2 style={homeStyles.sectionTitle}>Top 6 planes mejor valorados</h2>
+        <div style={homeStyles.carousel}>
+          {PLANS.map(p => <DestinationCard key={p.id} item={p} onClick={() => onNavigate('plan-detail', p)} />)}
+        </div>
+        <div style={{ textAlign:'center', marginTop:24 }}>
+          <a href="#" onClick={e => { e.preventDefault(); onNavigate('plans'); }} style={homeStyles.btnPrimary}>Ver todos los planes</a>
+        </div>
+      </section>
+
+      {/* News */}
+      <section style={{ ...homeStyles.section, background:'#fff', borderRadius:16, margin:'0 32px 48px', padding:'48px 40px' }}>
+        <h2 style={{ ...homeStyles.sectionTitle, marginBottom:32 }}>Últimas Noticias</h2>
+        <div style={{ display:'grid', gridTemplateColumns:'2fr 1fr 1fr', gap:20 }}>
+          {[
+            { title:'Costa Rica lidera iniciativas de turismo sostenible en Centroamérica', cat:'Turismo Sostenible', date:'15 Jul 2025', img:'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=400&fit=crop', badge:'Artículo', badgeBg:'linear-gradient(135deg,#283951,#588684)' },
+            { title:'Panamá presenta nueva campaña para atraer turistas internacionales', cat:'Promoción Turística', date:'12 Jul 2025', img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop', badge:'Video', badgeBg:'linear-gradient(135deg,#D57133,#E8955A)' },
+            { title:'La transformación digital revoluciona la experiencia turística', cat:'Innovación', date:'10 Jul 2025', img:'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop', badge:'Artículo', badgeBg:'linear-gradient(135deg,#283951,#588684)' },
+          ].map((n,i) => (
+            <article key={i} style={{ background:'#F8F9FA', borderRadius:12, overflow:'hidden', border:'1px solid #E1E8ED' }}>
+              <div style={{ position:'relative', height: i===0 ? 180 : 140 }}>
+                <img src={n.img} alt={n.title} style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+                <span style={{ position:'absolute', top:10, left:10, background:n.badgeBg, color:'#fff', fontSize:10, fontWeight:700, padding:'3px 9px', borderRadius:20, letterSpacing:.3 }}>{n.badge}</span>
+              </div>
+              <div style={{ padding:14 }}>
+                <div style={{ display:'flex', gap:8, marginBottom:8 }}>
+                  <span style={{ fontSize:11, color:'#8A9BA8' }}>{n.date}</span>
+                  <span style={{ fontSize:11, color:'#588684', fontWeight:600, background:'rgba(88,134,132,.1)', padding:'1px 7px', borderRadius:6 }}>{n.cat}</span>
+                </div>
+                <h3 style={{ fontFamily:"'Poppins',sans-serif", fontSize: i===0 ? 16 : 13, fontWeight:600, color:'#283951', lineHeight:1.4, marginBottom:8 }}>{n.title}</h3>
+                <a href="#" style={{ color:'#D57133', fontSize:12, fontWeight:600 }}>Leer más →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+const homeStyles = {
+  hero: { position:'relative', height:'72vh', minHeight:500, backgroundSize:'cover', backgroundPosition:'center', display:'flex', alignItems:'center', borderRadius:16, margin:'0 32px', overflow:'hidden' },
+  heroContent: { padding:'0 48px', zIndex:2, position:'relative', maxWidth:700 },
+  heroTitle: { fontFamily:"'Poppins',sans-serif", fontSize:'clamp(2rem,6vw,3.5rem)', fontWeight:700, color:'#fff', lineHeight:1.1, marginBottom:16, textShadow:'0 4px 20px rgba(0,0,0,.3)' },
+  heroSub: { fontSize:18, color:'rgba(255,255,255,.95)', marginBottom:28, textShadow:'0 2px 10px rgba(0,0,0,.3)' },
+  heroCta: { display:'inline-flex', alignItems:'center', gap:8, background:'#D57133', color:'#fff', padding:'14px 28px', borderRadius:50, fontWeight:600, fontSize:16, boxShadow:'0 8px 25px rgba(40,57,81,.15)' },
+  heroControls: { position:'absolute', bottom:24, left:48, display:'flex', gap:10, zIndex:3 },
+  heroCtrl: { width:44, height:44, borderRadius:'50%', background:'rgba(255,255,255,.2)', border:'1px solid rgba(255,255,255,.3)', color:'#fff', fontSize:20, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' },
+  section: { maxWidth:1200, margin:'0 auto', padding:'48px 32px 0' },
+  sectionTitle: { fontFamily:"'Poppins',sans-serif", fontSize:26, fontWeight:700, color:'#283951', textAlign:'center', marginBottom:28 },
+  carousel: { display:'flex', gap:16, overflowX:'auto', paddingBottom:8, scrollSnapType:'x mandatory', WebkitOverflowScrolling:'touch' },
+  btnPrimary: { background:'#D57133', color:'#fff', padding:'12px 32px', borderRadius:50, fontWeight:600, fontSize:14, boxShadow:'0 4px 12px rgba(40,57,81,.12)', display:'inline-block' },
+};
+
+// DestinationsScreen
+const DestinationsScreen = ({ onNavigate, isPlans }) => {
+  const items = isPlans ? PLANS : DESTINATIONS;
+  const [search, setSearch] = React.useState('');
+  const [tipo, setTipo] = React.useState('');
+  const [provincia, setProvincia] = React.useState('');
+
+  const filtered = items.filter(d => {
+    const matchSearch = !search || d.nombre.toLowerCase().includes(search.toLowerCase()) || d.provincia.toLowerCase().includes(search.toLowerCase());
+    const matchTipo = !tipo || d.tipo === tipo;
+    const matchProv = !provincia || d.provincia === provincia;
+    return matchSearch && matchTipo && matchProv;
+  });
+
+  const tipos = [...new Set(items.map(i => i.tipo))];
+  const provincias = [...new Set(items.map(i => i.provincia))];
+
+  return (
+    <div className="fade-in" style={{ maxWidth:1200, margin:'0 auto', padding:'24px 32px 64px' }}>
+      <h2 style={{ fontFamily:"'Poppins',sans-serif", fontSize:26, fontWeight:700, color:'#283951', textAlign:'center', marginBottom:28 }}>
+        {isPlans ? 'Planes Turísticos en Panamá' : 'Explora destinos en Panamá'}
+      </h2>
+
+      {/* Search + Filters */}
+      <div style={{ marginBottom:28 }}>
+        <div style={{ display:'flex', justifyContent:'center', gap:10, marginBottom:14 }}>
+          <input
+            value={search} onChange={e => setSearch(e.target.value)}
+            placeholder={isPlans ? 'Buscar planes...' : 'Buscar por nombre, provincia o tipo…'}
+            style={destStyles.searchInput}
+          />
+          <button style={destStyles.searchBtn}>Buscar</button>
+        </div>
+        <div style={{ display:'flex', gap:10, justifyContent:'center', flexWrap:'wrap' }}>
+          <select value={provincia} onChange={e => setProvincia(e.target.value)} style={destStyles.filterSelect}>
+            <option value="">Todas las provincias</option>
+            {provincias.map(p => <option key={p}>{p}</option>)}
+          </select>
+          <select value={tipo} onChange={e => setTipo(e.target.value)} style={destStyles.filterSelect}>
+            <option value="">Todos los tipos</option>
+            {tipos.map(t => <option key={t}>{t}</option>)}
+          </select>
+          <select style={destStyles.filterSelect}>
+            <option>Todos los precios</option>
+            <option>Gratis</option>
+            <option>De pago</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Grid */}
+      <div style={destStyles.grid}>
+        {filtered.length === 0 ? (
+          <div style={{ gridColumn:'1/-1', textAlign:'center', padding:'48px 0', color:'#5A6B7D' }}>
+            <p style={{ fontSize:16 }}>No se encontraron {isPlans ? 'planes' : 'destinos'} para esta búsqueda.</p>
+          </div>
+        ) : filtered.map(d => (
+          <DestinationCard key={d.id} item={d} onClick={() => onNavigate(isPlans ? 'plan-detail' : 'destination-detail', d)} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const destStyles = {
+  searchInput: { flex:1, maxWidth:380, padding:'11px 18px', border:'2px solid #E1E8ED', borderRadius:50, fontSize:14, outline:'none', fontFamily:'inherit', color:'#283951' },
+  searchBtn: { padding:'11px 24px', background:'#D57133', color:'#fff', border:'none', borderRadius:50, fontWeight:600, fontSize:14 },
+  filterSelect: { padding:'8px 32px 8px 14px', border:'2px solid #E1E8ED', borderRadius:50, fontSize:13, outline:'none', background:'#fff', cursor:'pointer', fontFamily:'inherit', color:'#283951', appearance:'none', backgroundImage:"url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A6B7D' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")", backgroundRepeat:'no-repeat', backgroundPosition:'right 12px center' },
+  grid: { display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:20 },
+};
+
+// DetailScreen
+const DetailScreen = ({ item, onNavigate, isPlan }) => {
+  const [saved, setSaved] = React.useState(false);
+  return (
+    <div className="fade-in" style={{ maxWidth:900, margin:'0 auto', padding:'24px 32px 64px' }}>
+      <button onClick={() => onNavigate(isPlan ? 'plans' : 'destinations')}
+        style={{ background:'none', border:'none', color:'#588684', fontWeight:600, fontSize:14, cursor:'pointer', marginBottom:20, display:'flex', alignItems:'center', gap:6 }}>
+        ← Volver a {isPlan ? 'Planes' : 'Destinos'}
+      </button>
+
+      <div style={{ background:'#fff', borderRadius:16, overflow:'hidden', border:'1px solid #E1E8ED', boxShadow:'0 4px 12px rgba(40,57,81,.08)' }}>
+        {/* Hero image */}
+        <div style={{ position:'relative', height:340 }}>
+          <img src={item.imagen} alt={item.nombre} style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+          <div style={{ position:'absolute', inset:0, background:'linear-gradient(0deg,rgba(40,57,81,.6) 0%,rgba(40,57,81,.1) 60%)' }}></div>
+          <div style={{ position:'absolute', bottom:24, left:28, right:28 }}>
+            <h1 style={{ fontFamily:"'Poppins',sans-serif", fontSize:30, fontWeight:700, color:'#fff', marginBottom:6, textShadow:'0 2px 8px rgba(0,0,0,.3)' }}>{item.nombre}</h1>
+            <div style={{ display:'flex', gap:12, alignItems:'center' }}>
+              <span style={{ color:'rgba(255,255,255,.9)', fontSize:14 }}>📍 {item.provincia}</span>
+              <span style={{ color:'#D57133', fontWeight:700, fontSize:15 }}>★ {item.rating}</span>
+              <span style={{ color:'rgba(255,255,255,.9)', fontWeight:600, fontSize:14 }}>{item.precio ? `$${item.precio}` : 'Gratis'}</span>
+            </div>
+          </div>
+          <button onClick={() => setSaved(!saved)}
+            style={{ position:'absolute', top:16, right:16, background:'rgba(255,255,255,.9)', border:'none', borderRadius:'50%', width:44, height:44, display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer', boxShadow:'0 2px 8px rgba(0,0,0,.15)' }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill={saved ? '#E74C3C' : 'none'} stroke={saved ? '#E74C3C' : '#5A6B7D'} strokeWidth="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div style={{ display:'grid', gridTemplateColumns:'1fr 300px', gap:0 }}>
+          {/* Left */}
+          <div style={{ padding:'28px 32px' }}>
+            <span style={{ background:'rgba(88,134,132,.1)', color:'#3f6b69', padding:'4px 12px', borderRadius:20, fontSize:12, fontWeight:600, display:'inline-block', marginBottom:20 }}>{item.tipo}</span>
+            <h2 style={{ fontFamily:"'Poppins',sans-serif", fontSize:18, fontWeight:600, color:'#283951', marginBottom:12 }}>Descripción</h2>
+            <p style={{ color:'#5A6B7D', lineHeight:1.7, fontSize:15, marginBottom:24 }}>{item.desc || 'Un destino espectacular que ofrece una experiencia única en el corazón de Panamá. Con paisajes naturales impresionantes y una rica cultura local.'}</p>
+
+            {isPlan && (
+              <div style={{ background:'#F8F9FA', borderRadius:12, padding:'16px 20px', marginBottom:24 }}>
+                <h3 style={{ fontFamily:"'Poppins',sans-serif", fontSize:15, fontWeight:600, color:'#283951', marginBottom:12 }}>Detalles del Plan</h3>
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:8 }}>
+                  {[['Duración','3 días / 2 noches'],['Precio',item.precio ? `$${item.precio} por persona` : 'Gratis'],['Dificultad','Moderada'],['Salidas','Sáb y Dom']].map(([k,v]) => (
+                    <div key={k} style={{ fontSize:13 }}>
+                      <span style={{ color:'#8A9BA8', display:'block', marginBottom:2 }}>{k}</span>
+                      <span style={{ color:'#283951', fontWeight:600 }}>{v}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <h2 style={{ fontFamily:"'Poppins',sans-serif", fontSize:18, fontWeight:600, color:'#283951', marginBottom:12 }}>Ubicación</h2>
+            <div style={{ background:'#E2E1E0', borderRadius:12, height:160, display:'flex', alignItems:'center', justifyContent:'center', border:'1px solid #E1E8ED' }}>
+              <div style={{ textAlign:'center', color:'#8A9BA8' }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ marginBottom:6 }}>
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                <p style={{ fontSize:12 }}>Mapa interactivo · {item.provincia}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right sidebar */}
+          <div style={{ padding:'28px 24px', borderLeft:'1px solid #E1E8ED' }}>
+            <div style={{ background:'#F8F9FA', borderRadius:12, padding:20, marginBottom:20 }}>
+              <div style={{ fontSize:13, color:'#8A9BA8', marginBottom:4 }}>Precio estimado</div>
+              <div style={{ fontSize:24, fontWeight:700, color:'#3f6b69', marginBottom:16 }}>{item.precio ? `$${item.precio}` : 'Gratis'}</div>
+              <div style={{ fontStyle:'italic', color:'#8A9BA8', fontSize:12, padding:12, background:'rgba(88,134,132,.08)', borderRadius:8, border:'1px solid rgba(88,134,132,.15)' }}>
+                📋 Las reservas y pagos se gestionan directamente con el proveedor.
+              </div>
+            </div>
+
+            <div style={{ marginBottom:20 }}>
+              <h3 style={{ fontFamily:"'Poppins',sans-serif", fontSize:14, fontWeight:600, color:'#283951', marginBottom:12 }}>Contacto</h3>
+              {[['📧','info@touristmo.pa'],['📞','+507 123-4567'],['🌐','www.touristmo.pa']].map(([icon,val]) => (
+                <div key={val} style={{ display:'flex', gap:8, alignItems:'center', marginBottom:8, fontSize:13, color:'#5A6B7D' }}>
+                  <span>{icon}</span><span>{val}</span>
+                </div>
+              ))}
+            </div>
+
+            <button style={{ width:'100%', padding:13, background:'#D57133', color:'#fff', border:'none', borderRadius:50, fontWeight:700, fontSize:14, cursor:'pointer', marginBottom:10, fontFamily:'inherit' }}>
+              Contactar
+            </button>
+            <button onClick={() => setSaved(!saved)}
+              style={{ width:'100%', padding:12, background:'transparent', color:'#588684', border:'2px solid #588684', borderRadius:50, fontWeight:600, fontSize:14, cursor:'pointer', fontFamily:'inherit' }}>
+              {saved ? '❤ Guardado' : '♡ Guardar'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ProfileScreen
+const ProfileScreen = ({ onNavigate }) => {
+  const [activeTab, setActiveTab] = React.useState('todos');
+  const saved = DESTINATIONS.slice(0,4);
+  const tabs = ['todos','naturaleza','urbano','cultural','tropical'];
+
+  return (
+    <div className="fade-in" style={{ maxWidth:1200, margin:'0 auto', padding:'24px 32px 64px', display:'grid', gridTemplateColumns:'260px 1fr', gap:28 }}>
+      {/* Sidebar */}
+      <aside>
+        <div style={{ background:'#fff', borderRadius:16, padding:24, border:'1px solid #E1E8ED', textAlign:'center', marginBottom:16 }}>
+          <div style={{ width:80, height:80, borderRadius:'50%', overflow:'hidden', margin:'0 auto 12px', border:'3px solid #588684' }}>
+            <img src="../../assets/sample-user.avif" alt="Jenna Smith" style={{ width:'100%', height:'100%', objectFit:'cover' }} />
+          </div>
+          <h2 style={{ fontFamily:"'Poppins',sans-serif", fontSize:18, fontWeight:700, color:'#283951', marginBottom:4 }}>Jenna Smith</h2>
+          <p style={{ color:'#8A9BA8', fontSize:13, marginBottom:16 }}>@jennasmith</p>
+          <a href="#" onClick={e => { e.preventDefault(); onNavigate('destination-form'); }}
+            style={{ background:'#D57133', color:'#fff', padding:'9px 18px', borderRadius:50, fontSize:13, fontWeight:600, display:'inline-block' }}>
+            Registra un destino
+          </a>
+        </div>
+        <div style={{ background:'#fff', borderRadius:16, padding:20, border:'1px solid #E1E8ED' }}>
+          <h3 style={{ fontFamily:"'Poppins',sans-serif", fontSize:14, fontWeight:600, color:'#283951', marginBottom:12 }}>Mi cuenta</h3>
+          {[['Destinos guardados','4'],['Planes vistos','12'],['Miembro desde','Jul 2025']].map(([k,v]) => (
+            <div key={k} style={{ display:'flex', justifyContent:'space-between', padding:'8px 0', borderBottom:'1px solid #F8F9FA', fontSize:13 }}>
+              <span style={{ color:'#5A6B7D' }}>{k}</span>
+              <span style={{ fontWeight:600, color:'#283951' }}>{v}</span>
+            </div>
+          ))}
+        </div>
+      </aside>
+
+      {/* Main */}
+      <main>
+        <div style={{ marginBottom:20 }}>
+          <h2 style={{ fontFamily:"'Poppins',sans-serif", fontSize:22, fontWeight:700, color:'#283951', marginBottom:14 }}>Destinos Guardados</h2>
+          <div style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
+            {tabs.map(t => (
+              <button key={t} onClick={() => setActiveTab(t)}
+                style={{ padding:'7px 16px', border:'none', borderRadius:50, fontSize:13, fontWeight:600, cursor:'pointer', background: activeTab===t ? '#588684' : '#fff', color: activeTab===t ? '#fff' : '#5A6B7D', border: activeTab===t ? 'none' : '1px solid #E1E8ED' }}>
+                {t.charAt(0).toUpperCase()+t.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:16 }}>
+          {saved.map(d => <DestinationCard key={d.id} item={d} onClick={() => onNavigate('destination-detail', d)} />)}
+        </div>
+      </main>
+    </div>
+  );
+};
+
+// Destination Form
+const DestinationFormScreen = ({ onNavigate }) => {
+  const [submitted, setSubmitted] = React.useState(false);
+  const handleSubmit = e => { e.preventDefault(); setSubmitted(true); setTimeout(() => { setSubmitted(false); onNavigate('destinations'); }, 1800); };
+
+  return (
+    <div className="fade-in" style={{ maxWidth:700, margin:'0 auto', padding:'24px 32px 64px' }}>
+      <button onClick={() => onNavigate('home')} style={{ background:'none', border:'none', color:'#588684', fontWeight:600, fontSize:14, cursor:'pointer', marginBottom:20 }}>← Volver</button>
+      <div style={{ background:'#fff', borderRadius:16, border:'1px solid #E1E8ED', overflow:'hidden' }}>
+        <div style={{ height:4, background:'linear-gradient(135deg,#D57133,#E8955A)' }}></div>
+        <div style={{ padding:'28px 32px' }}>
+          <h1 style={{ fontFamily:"'Poppins',sans-serif", fontSize:22, fontWeight:700, color:'#283951', marginBottom:4 }}>Registrar Destino</h1>
+          <p style={{ color:'#5A6B7D', fontSize:14, marginBottom:28 }}>Propone un nuevo destino turístico para Panamá</p>
+
+          <form onSubmit={handleSubmit}>
+            {[['Nombre del destino','text','Ej: Playa Venao'],['Provincia','text','Ej: Veraguas']].map(([label,type,ph]) => (
+              <div key={label} style={{ marginBottom:18 }}>
+                <label style={formSt.label}>{label}</label>
+                <input type={type} placeholder={ph} required style={formSt.input} />
+              </div>
+            ))}
+            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16, marginBottom:18 }}>
+              <div>
+                <label style={formSt.label}>Tipo</label>
+                <select style={formSt.input}>
+                  <option>Playa</option><option>Natural</option><option>Histórico</option><option>Aventura</option><option>Cultural</option>
+                </select>
+              </div>
+              <div>
+                <label style={formSt.label}>Precio estimado ($)</label>
+                <input type="number" placeholder="0 = Gratis" style={formSt.input} />
+              </div>
+            </div>
+            <div style={{ marginBottom:18 }}>
+              <label style={formSt.label}>Descripción</label>
+              <textarea rows={4} placeholder="Describe el destino, sus características y atractivos…" style={{ ...formSt.input, height:'auto', resize:'none' }}></textarea>
+            </div>
+            <div style={{ marginBottom:24 }}>
+              <label style={formSt.label}>Imagen (URL)</label>
+              <input type="url" placeholder="https://..." style={formSt.input} />
+            </div>
+            <div style={{ display:'flex', gap:12 }}>
+              <button type="submit" style={formSt.btnPrimary}>Enviar propuesta</button>
+              <button type="button" onClick={() => onNavigate('home')} style={formSt.btnOutline}>Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {submitted && (
+        <div style={{ position:'fixed', inset:0, background:'rgba(40,57,81,.8)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:9999 }}>
+          <div style={{ background:'#fff', borderRadius:16, padding:40, textAlign:'center' }}>
+            <div style={{ width:56, height:56, background:'#4CAF50', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 16px' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 style={{ fontFamily:"'Poppins',sans-serif", fontSize:20, color:'#283951', marginBottom:6 }}>¡Propuesta enviada!</h2>
+            <p style={{ color:'#5A6B7D', fontSize:14 }}>Será revisada por nuestro equipo.</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const formSt = {
+  label: { display:'block', fontSize:12, fontWeight:600, color:'#283951', marginBottom:5 },
+  input: { width:'100%', padding:'11px 14px', border:'2px solid #E1E8ED', borderRadius:12, fontSize:14, fontFamily:'inherit', color:'#283951', outline:'none', boxSizing:'border-box' },
+  btnPrimary: { padding:'12px 28px', background:'#D57133', color:'#fff', border:'none', borderRadius:50, fontWeight:700, fontSize:14, cursor:'pointer', fontFamily:'inherit' },
+  btnOutline: { padding:'12px 24px', background:'transparent', color:'#588684', border:'2px solid #588684', borderRadius:50, fontWeight:600, fontSize:14, cursor:'pointer', fontFamily:'inherit' },
+};
+
+// ─── APP ─────────────────────────────────────────────────────────────────────
+const App = () => {
+  const [page, setPage] = React.useState(() => localStorage.getItem('ti_page') || 'home');
+  const [detailItem, setDetailItem] = React.useState(null);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  const navigate = (dest, item) => {
+    setPage(dest);
+    if (item) setDetailItem(item);
+    localStorage.setItem('ti_page', dest);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const renderScreen = () => {
+    switch(page) {
+      case 'home': return <HomeScreen onNavigate={navigate} />;
+      case 'destinations': return <DestinationsScreen onNavigate={navigate} isPlans={false} />;
+      case 'plans': return <DestinationsScreen onNavigate={navigate} isPlans={true} />;
+      case 'destination-detail': return detailItem ? <DetailScreen item={detailItem} onNavigate={navigate} isPlan={false} /> : <HomeScreen onNavigate={navigate} />;
+      case 'plan-detail': return detailItem ? <DetailScreen item={detailItem} onNavigate={navigate} isPlan={true} /> : <HomeScreen onNavigate={navigate} />;
+      case 'login': return <LoginForm onNavigate={navigate} onLogin={() => { setIsLoggedIn(true); navigate('profile'); }} />;
+      case 'profile': return <ProfileScreen onNavigate={navigate} />;
+      case 'dashboard': return <Dashboard onNavigate={navigate} />;
+      case 'destination-form': return <DestinationFormScreen onNavigate={navigate} />;
+      case 'about': return <AboutScreen onNavigate={navigate} />;
+      case 'help': return <HelpScreen onNavigate={navigate} />;
+      case 'company-profile': return <CompanyProfile onNavigate={navigate} />;
+      case 'plan-form': return <PlanFormScreen onNavigate={navigate} />;
+      default: return <HomeScreen onNavigate={navigate} />;
+    }
+  };
+
+  return (
+    <div>
+      <Navbar currentPage={page} onNavigate={navigate} isLoggedIn={isLoggedIn} />
+      {renderScreen()}
+      {page !== 'login' && <Footer onNavigate={navigate} />}
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

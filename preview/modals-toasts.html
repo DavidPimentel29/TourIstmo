@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#E2E1E0;padding:20px;display:flex;gap:16px;flex-wrap:wrap}
+.modal{background:#fff;border-radius:16px;box-shadow:0 15px 35px rgba(40,57,81,.2);width:300px;overflow:hidden}
+.modal-header{padding:16px 20px;border-bottom:1px solid #E1E8ED;display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-family:'Poppins';font-size:16px;font-weight:600;color:#283951}
+.modal-close{background:none;border:none;color:#8A9BA8;cursor:pointer;padding:4px;border-radius:6px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1}
+.modal-body{padding:20px;color:#5A6B7D;font-size:14px;line-height:1.6}
+.modal-footer{padding:14px 20px;border-top:1px solid #E1E8ED;display:flex;gap:10px;justify-content:flex-end}
+.btn{padding:7px 16px;border-radius:50px;font-size:13px;font-weight:600;border:none;cursor:pointer}
+.btn-primary{background:#D57133;color:#fff}
+.btn-outline{background:transparent;color:#588684;border:2px solid #588684}
+
+.toasts{display:flex;flex-direction:column;gap:8px;width:280px}
+.toast{background:#fff;border-radius:10px;box-shadow:0 4px 12px rgba(40,57,81,.12);padding:12px 14px;display:flex;align-items:flex-start;gap:10px;border-left:4px solid}
+.toast-success{border-color:#4CAF50}
+.toast-error{border-color:#E74C3C}
+.toast-warning{border-color:#FFA726}
+.toast-info{border-color:#588684}
+.t-title{font-size:12px;font-weight:600;color:#283951}
+.t-msg{font-size:11px;color:#8A9BA8}
+.t-icon{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:1px}
+</style></head><body>
+<div class="modal">
+  <div class="modal-header">
+    <span class="modal-title">Confirmar acción</span>
+    <button class="modal-close">×</button>
+  </div>
+  <div class="modal-body">¿Estás seguro de que deseas aprobar este destino? Esta acción no se puede deshacer.</div>
+  <div class="modal-footer">
+    <button class="btn btn-outline">Cancelar</button>
+    <button class="btn btn-primary">Aprobar</button>
+  </div>
+</div>
+
+<div class="toasts">
+  <div class="toast toast-success">
+    <div class="t-icon" style="background:#e8f5e8"></div>
+    <div><div class="t-title">¡Éxito!</div><div class="t-msg">Destino aprobado correctamente.</div></div>
+  </div>
+  <div class="toast toast-error">
+    <div class="t-icon" style="background:#fce4ec"></div>
+    <div><div class="t-title">Error</div><div class="t-msg">No se pudo completar la acción.</div></div>
+  </div>
+  <div class="toast toast-warning">
+    <div class="t-icon" style="background:#fff3e0"></div>
+    <div><div class="t-title">Advertencia</div><div class="t-msg">Algunos campos están incompletos.</div></div>
+  </div>
+  <div class="toast toast-info">
+    <div class="t-icon" style="background:#e3f2fd"></div>
+    <div><div class="t-title">Información</div><div class="t-msg">Se encontraron 12 destinos.</div></div>
+  </div>
+</div>
+</body></html>

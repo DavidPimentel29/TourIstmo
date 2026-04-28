@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F8F9FA;padding:20px;display:flex;flex-direction:column;gap:16px}
+.label{font-size:10px;font-weight:600;color:#8A9BA8;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.badge-primary{background:#588684;color:#fff}
+.badge-success{background:rgba(76,175,80,.15);color:#2e7d32}
+.badge-warning{background:rgba(255,167,38,.15);color:#ef6c00}
+.badge-danger{background:rgba(231,76,60,.15);color:#c0392b}
+.badge-info{background:rgba(88,134,132,.15);color:#588684}
+.badge-article{background:linear-gradient(135deg,#283951,#588684);color:#fff}
+.badge-video{background:linear-gradient(135deg,#D57133,#E8955A);color:#fff}
+.badge-secondary{background:#F8F9FA;color:#5A6B7D;border:1px solid #E1E8ED}
+.pagination{display:flex;gap:6px;align-items:center}
+.page{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#fff;color:#5A6B7D;font-size:13px;font-weight:500;border:1px solid #E1E8ED;cursor:pointer}
+.page.active{background:#588684;color:#fff;border-color:#588684}
+</style></head><body>
+<div>
+  <div class="label">Status Badges</div>
+  <div class="row">
+    <span class="badge badge-primary">Teal</span>
+    <span class="badge badge-success">Aprobado</span>
+    <span class="badge badge-warning">Pendiente</span>
+    <span class="badge badge-danger">Rechazado</span>
+    <span class="badge badge-info">Info</span>
+    <span class="badge badge-secondary">Secundario</span>
+  </div>
+</div>
+<div>
+  <div class="label">Content Type Badges</div>
+  <div class="row">
+    <span class="badge badge-article">Artículo</span>
+    <span class="badge badge-video">Video</span>
+  </div>
+</div>
+<div>
+  <div class="label">Pagination</div>
+  <div class="pagination">
+    <div class="page">‹</div>
+    <div class="page active">1</div>
+    <div class="page">2</div>
+    <div class="page">3</div>
+    <div class="page">...</div>
+    <div class="page">8</div>
+    <div class="page">›</div>
+  </div>
+</div>
+</body></html>

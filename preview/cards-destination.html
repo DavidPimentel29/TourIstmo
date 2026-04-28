@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F8F9FA;padding:20px;display:flex;gap:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:16px;overflow:hidden;width:220px;box-shadow:0 1px 3px rgba(40,57,81,.08);border:1px solid #E1E8ED;transition:transform .3s,box-shadow .3s;cursor:pointer}
+.card:hover{transform:translateY(-6px);box-shadow:0 15px 35px rgba(40,57,81,.15)}
+.card-img{height:140px;object-fit:cover;width:100%;display:block;transition:transform .5s}
+.card:hover .card-img{transform:scale(1.06)}
+.img-wrap{overflow:hidden;position:relative}
+.save-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 3px rgba(40,57,81,.1)}
+.body{padding:14px}
+.title{font-family:'Poppins';font-size:14px;font-weight:600;color:#283951;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.location{font-size:12px;color:#5A6B7D;display:flex;align-items:center;gap:4px;margin-bottom:6px}
+.type{display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:500}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.rating{font-size:12px;font-weight:600;color:#D57133;display:flex;align-items:center;gap:3px}
+.price{font-size:13px;font-weight:700;color:#3f6b69}
+</style></head><body>
+
+<div class="card">
+  <div class="img-wrap">
+    <img class="card-img" src="../assets/casco-viejo.webp" alt="Casco Viejo">
+    <button class="save-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A9BA8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+  </div>
+  <div class="body">
+    <div class="title">Casco Viejo</div>
+    <div class="location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A6B7D" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Panamá</div>
+    <span class="type" style="background:#fff3e0;color:#ef6c00;border:1px solid #ffcc02">Histórico</span>
+    <div class="meta"><span class="rating">★ 4.9</span><span class="price">$25</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-wrap">
+    <img class="card-img" src="../assets/playa-la-miel.webp" alt="Playa La Miel">
+    <button class="save-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E74C3C" stroke="#E74C3C" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+  </div>
+  <div class="body">
+    <div class="title">Playa La Miel</div>
+    <div class="location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A6B7D" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Bocas del Toro</div>
+    <span class="type" style="background:#e3f2fd;color:#0277bd;border:1px solid #90caf9">Playa</span>
+    <div class="meta"><span class="rating">★ 4.8</span><span class="price">Gratis</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-wrap">
+    <img class="card-img" src="../assets/el-valle.webp" alt="El Valle de Antón">
+    <button class="save-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A9BA8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+  </div>
+  <div class="body">
+    <div class="title">El Valle de Antón</div>
+    <div class="location"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5A6B7D" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Coclé</div>
+    <span class="type" style="background:#e8f5e8;color:#2e7d32;border:1px solid #a5d6a7">Natural</span>
+    <div class="meta"><span class="rating">★ 4.5</span><span class="price">$30</span></div>
+  </div>
+</div>
+
+</body></html>

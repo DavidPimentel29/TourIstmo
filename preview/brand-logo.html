@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F8F9FA;padding:24px;display:flex;flex-direction:column;gap:20px}
+.label{font-size:10px;font-weight:600;color:#8A9BA8;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.logo-row{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.logo-item{display:flex;flex-direction:column;align-items:center;gap:8px}
+.logo-bg-teal{background:#588684;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:8px}
+.logo-bg-dark{background:#283951;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:8px}
+.logo-bg-light{background:#fff;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:8px;border:1px solid #E1E8ED}
+.wordmark{font-family:'Poppins';font-weight:700;font-size:20px}
+.logo-name{font-size:10px;color:#8A9BA8;font-weight:600}
+</style></head><body>
+<div>
+  <div class="label">Logo Variants</div>
+  <div class="logo-row">
+    <div class="logo-item">
+      <div class="logo-bg-teal">
+        <img src="../assets/logo.svg" style="width:44px;height:44px" alt="logo">
+        <span class="wordmark" style="color:#fff">TourIstmo</span>
+      </div>
+      <span class="logo-name">On Teal (Navbar)</span>
+    </div>
+    <div class="logo-item">
+      <div class="logo-bg-dark">
+        <img src="../assets/logowhite.png" style="width:44px;height:44px;object-fit:contain" alt="logo white">
+        <span class="wordmark" style="color:#fff">TourIstmo</span>
+      </div>
+      <span class="logo-name">On Dark (Footer)</span>
+    </div>
+    <div class="logo-item">
+      <div class="logo-bg-light">
+        <img src="../assets/logo2.png" style="width:44px;height:44px;object-fit:contain" alt="logo2">
+        <span class="wordmark" style="color:#283951">TourIstmo</span>
+      </div>
+      <span class="logo-name">On White (Login)</span>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="label">Sample Destination Photography</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <img src="../assets/casco-viejo.webp" style="height:80px;width:120px;object-fit:cover;border-radius:8px">
+    <img src="../assets/playa-la-miel.webp" style="height:80px;width:120px;object-fit:cover;border-radius:8px">
+    <img src="../assets/el-valle.webp" style="height:80px;width:120px;object-fit:cover;border-radius:8px">
+    <img src="../assets/india-dormida.webp" style="height:80px;width:120px;object-fit:cover;border-radius:8px">
+    <img src="../assets/coiba.webp" style="height:80px;width:120px;object-fit:cover;border-radius:8px">
+  </div>
+</div>
+</body></html>
