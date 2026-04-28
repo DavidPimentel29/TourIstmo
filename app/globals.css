@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #283951;
+  --color-teal: #588684;
+  --color-teal-text: #3f6b69;
+  --color-green: #8BAD65;
+  --color-orange: #D57133;
+  --color-orange-light: #E8955A;
+  --color-neutral: #E2E1E0;
+  
+  --color-background: #F8F9FA;
+  --color-foreground: #283951;
+  --color-muted: #5A6B7D;
+  --color-muted-foreground: #8A9BA8;
+  --color-border: #E1E8ED;
+  --color-card: #FFFFFF;
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Poppins', var(--font-sans);
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+  
+  input, select, textarea {
+    font-family: inherit;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-neutral);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-teal);
+    border-radius: 3px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.35s ease forwards;
+}
