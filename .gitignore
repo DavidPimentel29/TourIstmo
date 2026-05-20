@@ -33,3 +33,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# generated ai data
+/data/cache/*
+/data/embeddings/*
+/data/vectordb/*
+!/data/cache/.gitkeep
+!/data/embeddings/.gitkeep
+!/data/vectordb/.gitkeep

@@ -1,0 +1,8 @@
+services:
+  generative-ai-app:
+    build: .
+    environment:
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - .:/app
+    command: python -m pytest tests

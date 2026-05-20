@@ -1,0 +1,21 @@
+models:
+  default: gpt
+  gpt:
+    provider: openai
+    model: gpt-4o-mini
+    api_key_env: OPENAI_API_KEY
+  claude:
+    provider: anthropic
+    model: claude-3-5-sonnet-latest
+    api_key_env: ANTHROPIC_API_KEY
+  local:
+    provider: local
+    model_path: ./models/local-model
+
+generation:
+  temperature: 0.7
+  max_tokens: 1024
+
+rag:
+  embedding_model: text-embedding-3-small
+  vector_store_path: data/vectordb
